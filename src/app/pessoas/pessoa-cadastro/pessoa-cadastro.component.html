@@ -114,14 +114,14 @@
   </form>
 </div>
 
-<p-dialog header="Novo Contato" [visible]="exibindoFormularioContato"
+<p-dialog header="Novo Contato" [(visible)]="exibindoFormularioContato"
   modal="modal" *ngIf="contato">
-  <form #frmContato="ngForm">
+  <form #frmContato="ngForm" (ngSubmit)="confirmarContato(frmContato)">
     <div class="ui-g-12 ui-fluid">
       <label>Nome</label>
 
       <input pInputText type="text" name="nome"
-        required [ngModel]="contato.nome" #contatoNome="ngModel"/>
+        required [(ngModel)]="contato.nome" #contatoNome="ngModel"/>
 
       <app-message [control]="contatoNome" error="required" text="Informe o nome"></app-message>
     </div>
@@ -130,7 +130,7 @@
       <label>E-mail</label>
 
       <input pInputText type="email" name="email"
-        required email [ngModel]="contato.email" #contatoEmail="ngModel"/>
+        required email [(ngModel)]="contato.email" #contatoEmail="ngModel"/>
 
       <app-message [control]="contatoEmail" error="required" text="Informe o e-mail"></app-message>
       <app-message [control]="contatoEmail" error="email" text="Informe um e-mail válido"></app-message>
